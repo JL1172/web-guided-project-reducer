@@ -1,7 +1,7 @@
 import React, { useState, useReducer } from 'react';
 
 const Title = () => {
-  {newTitleText : "", editing : "false", title : "Hello earthlings!"}; 
+  // {newTitleText : "", editing : "false", title : "Hello earthlings!"}; 
   const [title, setTitle] = useState('Hello earthlings!');
   const [editing, setEditing] = useState(false);
   const [newTitleText, setNewTitleText] = useState('');
