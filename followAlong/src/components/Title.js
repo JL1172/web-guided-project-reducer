@@ -17,6 +17,7 @@ const Title = () => {
     setTitle(newTitleText);
     setEditing(false);
   }
+  
 
   return (
     <div>
