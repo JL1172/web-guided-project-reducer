@@ -1,30 +1,16 @@
 import React, { useState, useReducer } from 'react';
+import { changeTitle,editTitle,submitNewTitle } from './actions/action';
+import { reducer,initialValue } from './reducer/reducer';
 
 const Title = () => {
-  const [title, setTitle] = useState('Hello earthlings!');
-  const [editing, setEditing] = useState(false);
-  const [newTitleText, setNewTitleText] = useState('');
-
-  const handleChanges = e => {
-    setNewTitleText(e.target.value);
-  };
-
-  const handleEditing = () => {
-    setEditing(!editing);
-  }
-
-  const handleFormSubmit = () => {
-    setTitle(newTitleText);
-    setEditing(false);
-  }
-  
+const [state,dispatch] = useReducer(reducer,initialValue);
 
   return (
     <div>
-      {!editing ? (
+      {!state.editing ? (
         <h1>
-          {title}{' '}
-          <i onClick={handleEditing} className="far fa-edit" />
+          {state.title}{' '}
+          <i onClick={()=> dispatch(editTitle())} className="far fa-edit" />
         </h1>
       ) : (
         <div>
@@ -32,11 +18,11 @@ const Title = () => {
             className="title-input"
             type="text"
             name="newTitleText"
-            value={newTitleText}
-            onChange={handleChanges}
+            value={state.newTitle}
+            onChange={(e)=>dispatch(changeTitle(e))}
           />
           <button
-            onClick={handleFormSubmit}
+            onClick={()=> dispatch(submitNewTitle(state.newTitle))}
           >
             Update title
           </button>
