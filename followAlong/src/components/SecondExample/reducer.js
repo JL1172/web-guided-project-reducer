@@ -42,7 +42,15 @@ export const reducer = (state, action) => {
         case(PUSH_NEW_TODO) :
             return({...state, todos : [...state.todos,action.payload], todoInQue : ""})
         case(TOGGLE_TODO) :
-            return({...state, })
+            return({...state, todos : state.todos.map(n => {
+                if (n.id === action.payload.id) {
+                    return {...n, completed : !n.completed}
+                } else {
+                    return n;
+                }
+            })});
+        case(REMOVE_TODO) : 
+        return({...state, todos : state.todos.filter(n => !n.completed)})
         default:
             return (state)
     }

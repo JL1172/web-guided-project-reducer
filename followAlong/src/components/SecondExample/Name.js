@@ -7,10 +7,13 @@ export default function Name() {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     return (
-        <div style={{ display: 'flex', flexDirection: "column" }}>
+        <div style={{ display: 'flex', flexDirection: "column",alignItems : "center"}}>
             <h3>Todo List</h3>
             <div style={{ display: 'flex' }}>
+                <div style={{ display: 'flex',flexDirection: "column", marginBottom : "1rem"  }}>
                 <button onClick={() => dispatch(addTodo())}>{state.editMode ? "close" : "add"}</button>
+                <button onClick={()=> dispatch(removeTodo())}>Remove Completed</button>
+                </div>
                 {state.editMode && <div>
                     <input type="text" id="todoInQue"
                         name="todoInQue" value={state.todoInQue}
@@ -20,7 +23,8 @@ export default function Name() {
                 }
             </div>
             {state.todos.map((n, i) => {
-                return <div id = {n.id} key={i}>{n.description}</div>
+                return <li onClick={(e)=> dispatch(toggleTodo(n.id,e.target))} className = {n.completed ? "completed" : ""} 
+                key={i}>{n.description}</li>
             })}
         </div>
     )

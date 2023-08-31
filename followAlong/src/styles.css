@@ -83,3 +83,9 @@ h4 {
   right: 12px;
   top: 9px;
 }
+.completed {
+  text-decoration: line-through;
+}
+.completed::after {
+  content : "✔";
+}

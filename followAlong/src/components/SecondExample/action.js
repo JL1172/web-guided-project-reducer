@@ -16,6 +16,6 @@ export const pushNewTodo = (newTodo) => {
 export const removeTodo = () => {
     return {type : REMOVE_TODO};
 }
-export const toggleTodo = (value) => {
-    return {type : TOGGLE_TODO, payload : value};
+export const toggleTodo = (id,value) => {
+    return {type : TOGGLE_TODO, payload : {id : id, target : value}};
 } 
